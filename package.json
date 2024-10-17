@@ -1,5 +1,5 @@
 {
-	"name": "nely",
+	"name": "enya",
 	"module": "src/index.ts",
 	"devDependencies": {
 		"@biomejs/biome": "1.9.3",
@@ -8,15 +8,12 @@
 	"peerDependencies": {
 		"typescript": "^5.0.0"
 	},
-	"description": "Ergonomic parsing library",
+	"description": "An ergonomic env parsing library",
 	"scripts": {
 		"test": "bun run index.test.ts",
 		"test:watch": "bun run --watch index.test.ts",
 		"format": "bunx biome check --write .",
 		"format:ts": "bunx biome check --write ."
 	},
-	"type": "module",
-	"dependencies": {
-		"sade": "^1.8.1"
-	}
+	"type": "module"
 }
