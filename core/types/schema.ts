@@ -3,6 +3,7 @@ import type { EnyaBigInt } from '@/structs/schemas/EnyaBigInt';
 import type { EnyaBoolean } from '@/structs/schemas/EnyaBoolean';
 import type { EnyaEmail } from '@/structs/schemas/EnyaEmail';
 import type { EnyaEnum } from '@/structs/schemas/EnyaEnum';
+import type { EnyaFor } from '@/structs/schemas/EnyaFor';
 import type { EnyaNumber } from '@/structs/schemas/EnyaNumber';
 import type { EnyaObject } from '@/structs/schemas/EnyaObject';
 import type { EnyaOptional } from '@/structs/schemas/EnyaOptional';
@@ -25,6 +26,7 @@ export enum EnyaType {
 	RegExp = 'RegExp',
 	Optional = 'Optional',
 	Default = 'Default',
+	For = 'For',
 }
 
 export interface MappedEnyaType {
@@ -37,6 +39,13 @@ export interface MappedEnyaType {
 	[EnyaType.Email]: string;
 	[EnyaType.RegExp]: RegExp;
 }
+
+export type EnyaForOptions = Partial<
+	Record<
+		'test' | 'development' | 'production' | 'staging' | 'qa' | 'ci',
+		EnyaAnySchema
+	>
+>;
 
 export type EnyaShape = Record<string, EnyaAnySchema>;
 export type EnyaAnySchema =
@@ -51,7 +60,8 @@ export type EnyaAnySchema =
 	| EnyaEmail
 	| EnyaEnum<string[]>
 	| EnyaRegExp
-	| EnyaOptional<EnyaAnySchema>;
+	| EnyaOptional<EnyaAnySchema>
+	| EnyaFor<EnyaForOptions>;
 
 export type Infer<Shape extends EnyaShape> = {
 	[K in keyof Shape]: Shape[K] extends { type: EnyaType.Optional }

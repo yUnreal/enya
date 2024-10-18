@@ -3,6 +3,6 @@ export class EnyaError extends Error {
 		public readonly message: string,
 		description?: string,
 	) {
-		super(`${message}. See description: ${description}`);
+		super(`${message}`);
 	}
 }

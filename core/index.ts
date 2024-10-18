@@ -3,6 +3,7 @@ import { EnyaBigInt } from './structs/schemas/EnyaBigInt';
 import { EnyaBoolean } from './structs/schemas/EnyaBoolean';
 import { EnyaEmail } from './structs/schemas/EnyaEmail';
 import { EnyaEnum } from './structs/schemas/EnyaEnum';
+import { EnyaFor } from './structs/schemas/EnyaFor';
 import { EnyaNumber } from './structs/schemas/EnyaNumber';
 import { EnyaObject } from './structs/schemas/EnyaObject';
 import { EnyaOptional } from './structs/schemas/EnyaOptional';
@@ -11,7 +12,12 @@ import { EnyaRegExp } from './structs/schemas/EnyaRegExp';
 import { EnyaSchema } from './structs/schemas/EnyaSchema';
 import { EnyaString } from './structs/schemas/EnyaString';
 import { EnyaURL } from './structs/schemas/EnyaURL';
-import { type EnyaAnySchema, type EnyaShape, EnyaType } from './types/schema';
+import {
+	type EnyaAnySchema,
+	type EnyaForOptions,
+	type EnyaShape,
+	EnyaType,
+} from './types/schema';
 
 export const e = {
 	env<Shape extends EnyaShape>(shape: Shape) {
@@ -19,6 +25,9 @@ export const e = {
 	},
 	url(base?: string) {
 		return new EnyaURL(base);
+	},
+	for<Options extends EnyaForOptions>(options: Options) {
+		return new EnyaFor(options);
 	},
 	port() {
 		return new EnyaPort(EnyaType.Port);

@@ -1,25 +1,28 @@
+import { EnyaError } from '@/errors/EnyaError';
 import { type EnyaShape, EnyaType, type Infer } from '@/types/schema';
 
 export class EnyaSchema<Shape extends EnyaShape> {
 	public constructor(public readonly shape: Shape) {}
 
-	public parse(data = Bun.env) {
-		const copied = { ...data };
+	public parse(env = Bun.env) {
+		const data = { ...env };
 
 		for (const [key, schema] of Object.entries(this.shape)) {
-			const value = copied[key] ?? schema?.fn();
+			const value = data[key];
 
-			if (!copied[key]) {
+			if (!value) {
 				if (schema.type !== EnyaType.Optional)
-					throw new Error(`Missing key "${key}"`);
+					throw new EnyaError(
+						`Missing required environment variable "${key}". Expected a value of type "${schema.type}"`,
+					);
 
 				continue;
 			}
 
 			// @ts-expect-error
-			copied[key] = schema.parse(copied[key]);
+			data[key] = schema.parse(value);
 		}
 
-		return copied as Infer<Shape>;
+		return data as Infer<Shape>;
 	}
 }

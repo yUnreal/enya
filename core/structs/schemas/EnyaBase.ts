@@ -10,10 +10,6 @@ export abstract class EnyaBase<
 
 	public constructor(public readonly type: Type) {}
 
-	public describe(description: string) {
-		return this;
-	}
-
 	public parse(value: string) {
 		return coerce(value, this.type, {
 			// @ts-expect-error

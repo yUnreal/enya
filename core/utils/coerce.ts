@@ -15,14 +15,8 @@ export const coerce = (
 			return value;
 		case EnyaType.BigInt:
 			return BigInt(value);
-		case EnyaType.Boolean: {
-			const lower = value.toLowerCase();
-
-			if (!['true', 'false'].includes(lower))
-				throw new Error('Invalid boolean value');
-
-			return lower === 'true';
-		}
+		case EnyaType.Boolean:
+			return value.toLowerCase() === 'true';
 		case EnyaType.Number:
 			return Number(value);
 		case EnyaType.URL:

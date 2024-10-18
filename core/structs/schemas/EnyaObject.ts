@@ -1,3 +1,4 @@
+import { EnyaError } from '@/errors/EnyaError';
 import { type EnyaShape, EnyaType, type Infer } from '@/types/schema';
 import { EnyaBase } from './EnyaBase';
 
@@ -13,7 +14,8 @@ export class EnyaObject<Shape extends EnyaShape> extends EnyaBase<
 		const coerced = super.parse(value);
 
 		for (const [key, schema] of Object.entries(this.shape)) {
-			if (!(key in coerced)) throw new Error(`Missing key "${key}"`);
+			if (!(key in coerced))
+				throw new EnyaError(`Missing required object key "${key}".`);
 
 			// @ts-expect-error
 			coerced[key] = schema.parse(coerced[key]);

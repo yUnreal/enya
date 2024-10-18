@@ -1,3 +1,4 @@
+import { EnyaError } from '@/errors/EnyaError';
 import { EnyaType } from '@/types/schema';
 import { EnyaBase } from './EnyaBase';
 
@@ -11,8 +12,8 @@ export class EnyaEnum<Values extends string[]> extends EnyaBase<
 
 	public parse(value: string) {
 		if (!this.values.includes(value))
-			throw new Error(
-				`Invalid enum member, expected one of: "${this.values.join('", "')}"`,
+			throw new EnyaError(
+				`Invalid enum member, expected one of: "${this.values.join('", "')}".`,
 			);
 
 		return value;
