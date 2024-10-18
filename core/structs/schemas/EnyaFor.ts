@@ -1,8 +1,5 @@
 import { EnyaError } from '@/errors/EnyaError';
-import {
-	type EnyaForOptions,
-	EnyaType,
-} from '@/types/schema';
+import { type EnyaForOptions, EnyaType } from '@/types/schema';
 import { EnyaBase } from './EnyaBase';
 
 export class EnyaFor<Options extends EnyaForOptions> extends EnyaBase<

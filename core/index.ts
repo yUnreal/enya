@@ -1,6 +1,7 @@
 import { EnyaArray } from './structs/schemas/EnyaArray';
 import { EnyaBigInt } from './structs/schemas/EnyaBigInt';
 import { EnyaBoolean } from './structs/schemas/EnyaBoolean';
+import { EnyaDefer } from './structs/schemas/EnyaDefer';
 import { EnyaEmail } from './structs/schemas/EnyaEmail';
 import { EnyaEnum } from './structs/schemas/EnyaEnum';
 import { EnyaFor } from './structs/schemas/EnyaFor';
@@ -34,6 +35,9 @@ export const e = {
 	},
 	enum<const Values extends string[]>(...values: Values) {
 		return new EnyaEnum(values);
+	},
+	defer<Schema extends EnyaAnySchema>(schema: Schema) {
+		return new EnyaDefer(schema);
 	},
 	email() {
 		return new EnyaEmail(EnyaType.Email);

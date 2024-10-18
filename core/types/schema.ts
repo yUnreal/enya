@@ -1,6 +1,7 @@
 import type { EnyaArray } from '@/structs/schemas/EnyaArray';
 import type { EnyaBigInt } from '@/structs/schemas/EnyaBigInt';
 import type { EnyaBoolean } from '@/structs/schemas/EnyaBoolean';
+import type { EnyaDefer } from '@/structs/schemas/EnyaDefer';
 import type { EnyaEmail } from '@/structs/schemas/EnyaEmail';
 import type { EnyaEnum } from '@/structs/schemas/EnyaEnum';
 import type { EnyaFor } from '@/structs/schemas/EnyaFor';
@@ -27,6 +28,7 @@ export enum EnyaType {
 	Optional = 'Optional',
 	Default = 'Default',
 	For = 'For',
+	Defer = 'Defer',
 }
 
 export interface MappedEnyaType {
@@ -61,7 +63,8 @@ export type EnyaAnySchema =
 	| EnyaEnum<string[]>
 	| EnyaRegExp
 	| EnyaOptional<EnyaAnySchema>
-	| EnyaFor<EnyaForOptions>;
+	| EnyaFor<EnyaForOptions>
+	| EnyaDefer<EnyaAnySchema>;
 
 export type Infer<Shape extends EnyaShape> = {
 	[K in keyof Shape]: Shape[K] extends { type: EnyaType.Optional }
