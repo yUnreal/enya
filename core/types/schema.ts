@@ -26,7 +26,6 @@ export enum EnyaType {
 	Enum = 'Enum',
 	RegExp = 'RegExp',
 	Optional = 'Optional',
-	Default = 'Default',
 	For = 'For',
 	Defer = 'Defer',
 }

@@ -67,3 +67,5 @@ export const e = {
 		return new EnyaOptional(schema);
 	},
 };
+
+export * from './types/schema'

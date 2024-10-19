@@ -15,5 +15,9 @@
 		"format": "bunx biome check --write .",
 		"format:ts": "bunx biome check --write ."
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"env-var": "^7.5.0",
+		"envalid": "^8.0.0"
+	}
 }

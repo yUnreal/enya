@@ -4,9 +4,7 @@ import { type EnyaShape, EnyaType, type Infer } from '@/types/schema';
 export class EnyaSchema<Shape extends EnyaShape> {
 	public constructor(public readonly shape: Shape) {}
 
-	public parse(env = Bun.env) {
-		const data = { ...env };
-
+	public parse(data = { ...process.env }) {
 		for (const [key, schema] of Object.entries(this.shape)) {
 			const value = data[key];
 
@@ -24,5 +22,12 @@ export class EnyaSchema<Shape extends EnyaShape> {
 		}
 
 		return data as Infer<Shape>;
+	}
+
+	public extend<Other extends EnyaShape>({ shape }: EnyaSchema<Other>) {
+		// @ts-expect-error
+		for (const [key, value] of Object.entries(shape)) this.shape[key] = value;
+
+		return <EnyaSchema<Shape & Other>>(<unknown>this);
 	}
 }
