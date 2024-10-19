@@ -5,6 +5,7 @@ import { EnyaDefer } from './structs/schemas/EnyaDefer';
 import { EnyaEmail } from './structs/schemas/EnyaEmail';
 import { EnyaEnum } from './structs/schemas/EnyaEnum';
 import { EnyaFor } from './structs/schemas/EnyaFor';
+import { EnyaNever } from './structs/schemas/EnyaNever';
 import { EnyaNumber } from './structs/schemas/EnyaNumber';
 import { EnyaObject } from './structs/schemas/EnyaObject';
 import { EnyaOptional } from './structs/schemas/EnyaOptional';
@@ -48,6 +49,9 @@ export const e = {
 	regex(flags?: string) {
 		return new EnyaRegExp(flags);
 	},
+	never() {
+		return new EnyaNever(EnyaType.Never);
+	},
 	number() {
 		return new EnyaNumber(EnyaType.Number);
 	},
@@ -68,4 +72,4 @@ export const e = {
 	},
 };
 
-export * from './types/schema'
+export * from './types/schema';
