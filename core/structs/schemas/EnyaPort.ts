@@ -9,6 +9,7 @@ export class EnyaPort extends EnyaBase<EnyaType.Port> {
 		if (coerced < 1 || coerced > 65535)
 			throw new EnyaError(
 				'Value is NOT a valid TCP port. See more about: https://en.wikipedia.org/wiki/Transmission_Control_Protocol',
+				this.options.description,
 			);
 
 		return coerced;

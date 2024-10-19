@@ -1,8 +1,8 @@
 export class EnyaError extends Error {
 	public constructor(
-		public readonly message: string,
-		description?: string,
+		message: string,
+		public description?: string,
 	) {
-		super(message);
+		super(message + (description ? ` (${description})` : ''));
 	}
 }

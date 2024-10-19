@@ -1,13 +1,20 @@
 import { EnyaError } from '@/errors/EnyaError';
-import { type EnyaAnySchema, EnyaType } from '@/types/schema';
+import type {
+	EnyaAnySchema,
+	EnyaSchemaOptions,
+	EnyaType,
+} from '@/types/schema';
 import { EnyaBase } from './EnyaBase';
 
 export class EnyaArray<Items extends EnyaAnySchema[]> extends EnyaBase<
 	EnyaType.Array,
 	Items[number]['_output'][]
 > {
-	public constructor(public readonly items: Items) {
-		super(EnyaType.Array);
+	public constructor(
+		options: EnyaSchemaOptions<EnyaType.Array>,
+		public items: Items,
+	) {
+		super(options);
 	}
 
 	public parse(value: string) {

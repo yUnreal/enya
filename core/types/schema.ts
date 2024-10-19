@@ -44,6 +44,11 @@ export interface MappedEnyaType {
 	[EnyaType.Never]: never;
 }
 
+export interface EnyaSchemaOptions<Type extends EnyaType> {
+	type: Type;
+	description?: string;
+}
+
 export type EnyaForOptions = Partial<
 	Record<
 		'test' | 'development' | 'production' | 'staging' | 'qa' | 'ci',

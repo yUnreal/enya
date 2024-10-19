@@ -1,4 +1,8 @@
-import type { EnyaType, MappedEnyaType } from '@/types/schema';
+import type {
+	EnyaSchemaOptions,
+	EnyaType,
+	MappedEnyaType,
+} from '@/types/schema';
 import { coerce } from '@/utils/coerce';
 
 export abstract class EnyaBase<
@@ -8,10 +12,16 @@ export abstract class EnyaBase<
 > {
 	public _output!: Output;
 
-	public constructor(public readonly type: Type) {}
+	public constructor(public options: EnyaSchemaOptions<Type>) {}
+
+	public describe(description: string) {
+		this.options.description = description;
+
+		return this;
+	}
 
 	public parse(value: string) {
-		return coerce(value, this.type, {
+		return coerce(value, this.options.type, {
 			// @ts-expect-error
 			base: this.base,
 			// @ts-expect-error

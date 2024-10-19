@@ -193,3 +193,53 @@ const schema = e.env({
     REDIS_URL: e.url('redis://'), // URL
 });
 ```
+
+### Common Methods
+
+#### .describe
+
+Use this method to describe how the variable works.
+
+```ts
+const schema = e.env({
+    DB: e.url().describe('URL to connect to the database'),
+});
+
+schema.shape.DB.options.description; // "URL to connect to the database"
+```
+
+Description is used to make errors (EnyaError) more useful.
+
+#### .parse
+
+Any schema in Enya has a `.parse()` function to parse the data of your enviroment.
+
+Enya coerces the enviroment data internally before returning it to you. See the exmaple below:
+
+```ts
+const env = e.env({
+    PORT: e.port(),
+});
+
+console.log(env.parse());
+```
+
+In the example above, Enya use `Number(process.env.PORT)` to coerce the data before return it.
+
+Note, you can pass the enviroment data in the first argument of the `.parse` function. Nely uses `process.env` by default.
+
+```ts
+const mocked = {
+	PORT: 80,
+	DB: 'URL here...',
+};
+
+const productionEnv = e
+	.env({
+		DB: e.string(),
+	})
+	.extend(env)
+	.parse(mocked);
+```
+
+Passing the mocked data is much faster than process.env.

@@ -26,49 +26,49 @@ export const e = {
 		return new EnyaSchema(shape);
 	},
 	url(base?: string) {
-		return new EnyaURL(base);
+		return new EnyaURL({ type: EnyaType.URL }, base);
 	},
 	for<Options extends EnyaForOptions>(options: Options) {
-		return new EnyaFor(options);
+		return new EnyaFor({ type: EnyaType.For }, options);
 	},
 	port() {
-		return new EnyaPort(EnyaType.Port);
+		return new EnyaPort({ type: EnyaType.Port });
 	},
 	enum<const Values extends string[]>(...values: Values) {
-		return new EnyaEnum(values);
+		return new EnyaEnum({ type: EnyaType.Enum }, values);
 	},
 	defer<Schema extends EnyaAnySchema>(schema: Schema) {
-		return new EnyaDefer(schema);
+		return new EnyaDefer({ type: EnyaType.Defer }, schema);
 	},
 	email() {
-		return new EnyaEmail(EnyaType.Email);
+		return new EnyaEmail({ type: EnyaType.Email });
 	},
 	string() {
-		return new EnyaString(EnyaType.String);
+		return new EnyaString({ type: EnyaType.String });
 	},
 	regex(flags?: string) {
-		return new EnyaRegExp(flags);
+		return new EnyaRegExp({ type: EnyaType.RegExp }, flags);
 	},
 	never() {
-		return new EnyaNever(EnyaType.Never);
+		return new EnyaNever({ type: EnyaType.Never });
 	},
 	number() {
-		return new EnyaNumber(EnyaType.Number);
+		return new EnyaNumber({ type: EnyaType.Number });
 	},
 	bigint() {
-		return new EnyaBigInt(EnyaType.BigInt);
+		return new EnyaBigInt({ type: EnyaType.BigInt });
 	},
 	boolean() {
-		return new EnyaBoolean(EnyaType.Boolean);
+		return new EnyaBoolean({ type: EnyaType.Boolean });
 	},
 	array<Items extends EnyaAnySchema[]>(...items: Items) {
-		return new EnyaArray(items);
+		return new EnyaArray({ type: EnyaType.Array }, items);
 	},
 	object<Shape extends EnyaShape>(shape: Shape) {
-		return new EnyaObject(shape);
+		return new EnyaObject({ type: EnyaType.Object }, shape);
 	},
 	optional<Schema extends EnyaAnySchema>(schema: Schema) {
-		return new EnyaOptional(schema);
+		return new EnyaOptional({ type: EnyaType.Optional }, schema);
 	},
 };
 

@@ -9,10 +9,13 @@ export class EnyaSchema<Shape extends EnyaShape> {
 			const value = data[key];
 
 			if (!value) {
-				if (schema.type === EnyaType.Never) continue;
-				if (schema.type !== EnyaType.Optional)
+				const { type } = schema.options;
+
+				if (type === EnyaType.Never) continue;
+				if (type !== EnyaType.Optional)
 					throw new EnyaError(
-						`Missing required environment variable "${key}". Expected a value of type "${schema.type}"`,
+						`Missing required environment variable "${key}". Expected a value of type "${type}"`,
+						schema.options.description,
 					);
 
 				continue;
