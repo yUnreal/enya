@@ -73,3 +73,4 @@ export const e = {
 };
 
 export * from './types/schema';
+export { EnyaError } from './errors/EnyaError';
