@@ -1,5 +1,6 @@
 {
 	"name": "enya",
+	"version": "1.0.0",
 	"module": "src/index.ts",
 	"devDependencies": {
 		"@biomejs/biome": "1.9.3",

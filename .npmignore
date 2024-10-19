@@ -1,0 +1,5 @@
+index.test.ts
+docs/API.md
+node_modules/
+.gitignore
+biome.json
