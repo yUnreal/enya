@@ -1,6 +1,6 @@
 {
 	"name": "enya",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"module": "src/index.ts",
 	"devDependencies": {
 		"@biomejs/biome": "1.9.3",
@@ -16,5 +16,21 @@
 		"format": "bunx biome check --write .",
 		"format:ts": "bunx biome check --write ."
 	},
-	"type": "module"
+	"type": "module",
+	"repository": {
+		"type": "github",
+		"url": "https://github.com/yUnreal/enya"
+	},
+	"keywords": [
+		".env",
+		"enviroment",
+		"typescript",
+		"inference",
+		"bun",
+		"validation"
+	],
+	"author": {
+		"name": "Unreal",
+		"url": "https://github.com/yUnreal"
+	}
 }
